@@ -28,7 +28,9 @@ const images = [
 ];
 
 const slider = document.querySelector('.slider');
+const thumbnail = document.getElementById('thumbnail');
 let slide = '';
+let nail = '';
 let currentSlideIndex = 0;
 
 for(let i = 0; i < images.length; i++){
@@ -37,10 +39,17 @@ for(let i = 0; i < images.length; i++){
         <img src="${images[i]}" alt="superhero-${i}">
     </div>
     `;
+    nail += `<div class="Thumbheigth">
+        <img src="${images[i]}" alt"super-${i}">
+    </div>
+    `;
 }
 
 slider.innerHTML += slide;
+thumbnail.innerHTML += nail;
 document.querySelectorAll('.slide')[currentSlideIndex].classList.add('show');
+document.querySelectorAll('.Thumbheigth')[currentSlideIndex].classList.add('CPM-image-opacity');
+
 
 const next = document.querySelector('.next');
 const prev = document.querySelector('.prev');
@@ -48,23 +57,27 @@ const prev = document.querySelector('.prev');
 next.addEventListener('click', goNext)
 
 function goNext(){
+    document.querySelectorAll('.Thumbheigth')[currentSlideIndex].classList.remove('CPM-image-opacity');
     document.querySelectorAll('.slide')[currentSlideIndex].classList.remove('show');
     if(currentSlideIndex === images.length - 1){
         currentSlideIndex = 0;
     } else{
         currentSlideIndex++;
     }
+    document.querySelectorAll('.Thumbheigth')[currentSlideIndex].classList.add('CPM-image-opacity');
     document.querySelectorAll('.slide')[currentSlideIndex].classList.add('show');
 };
 
 prev.addEventListener('click', goBack)
 
 function goBack(){
+    document.querySelectorAll('.Thumbheigth')[currentSlideIndex].classList.remove('CPM-image-opacity');
     document.querySelectorAll('.slide')[currentSlideIndex].classList.remove('show');
     if(currentSlideIndex === 0){
         currentSlideIndex = images.length - 1;
     } else{
         currentSlideIndex--;
     }
+    document.querySelectorAll('.Thumbheigth')[currentSlideIndex].classList.add('CPM-image-opacity');
     document.querySelectorAll('.slide')[currentSlideIndex].classList.add('show');
 };
